@@ -1,0 +1,132 @@
+.hero {
+    display: flex;
+    height: fit-content;
+    background-color: inherit;
+}
+
+.left {
+    width: 60vw;
+    height: 100vh;
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: fit-content;
+}
+
+.left>div>p {
+    letter-spacing: 1.5px;
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 2rem 0;
+}
+
+.left>.texts:first-child {
+    color: red;
+    background: #000;
+}
+
+.left>.texts:nth-last-child() {
+    color: green;
+}
+
+.left>.texts:last-child {
+    color: black;
+}
+
+.left>h1 {
+    font-size: 2.75rem;
+    letter-spacing: -1px;
+    text-align: left;
+}
+
+.left>.btn {
+    margin-top: 4rem;
+    width: fit-content;
+    padding: 1rem 2rem;
+}
+
+.right {
+    width: 40vw;
+    height: 100vh;
+}
+
+.right>img {
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease-in-out;
+    animation: beat 1s;
+}
+
+/* .right > img:hover{
+} */
+
+@keyframes beat {
+    from {
+        transform: translateY(200px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media screen and (width <=1100px) {
+    .left>h1 {
+        font-size: 1.5rem;
+    }
+
+    .left>div>p {
+        font-size: 0.75rem;
+    }
+
+    .left>.btn {
+        font-size: 0.75rem;
+    }
+}
+
+@media screen and (width <=805px) {
+    .left {
+        padding: 3rem;
+        justify-self: flex-end;
+    }
+
+    .left>h1 {
+        margin-bottom: 1rem;
+    }
+
+    .left>div>p {
+        margin: 1rem 0;
+        letter-spacing: 2px;
+    }
+
+    .left>.btn {
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+@media screen and (width <=805px) {
+
+    .hero {
+        flex-direction: column;
+    }
+
+    .hero>* {
+        flex-grow: 1;
+        width: 100%;
+    }
+
+    .right {
+        height: 75%;
+    }
+}
+
+.right img {
+    width: 700px;
+    height: 600px;
+    position: relative;
+    top: 15px;
+    right: 100px;
+}
