@@ -27,8 +27,8 @@ function Profile() {
     async function fun() {
       const userDoc = await getDoc(doc(db, "users", user1.uid));
       const userData = userDoc.data();
-      console.log("userData", userDoc.data().profileImage);
-      setPhotoURL(userDoc.data().profileImage);
+      console.log("userData", userDoc.data().proImg);
+      setPhotoURL(userDoc.data().proImg);
     }
     fun();
   }, [photoURL]);

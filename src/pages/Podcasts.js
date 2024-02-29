@@ -9,9 +9,12 @@ import InputComponent from "../components/common/Input";
 
 function PodcastsPage() {
   const dispatch = useDispatch();
+
+  console.log("dispatch")
   const podcasts = useSelector((state) => state.podcasts.podcasts);
   const [search, setSearch] = useState("");
 
+  //here we get the all podcast data to show the 'filter output'
   useEffect(() => {
     const unsubscribe = onSnapshot(
       query(collection(db, "podcasts")),
