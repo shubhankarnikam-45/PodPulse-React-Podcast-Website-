@@ -95,7 +95,7 @@ function Profile() {
   //dispatch.
   const dispatch = useDispatch();
   const user1 = auth.currentUser;
-  console.log("user user 1", user1.uid)
+
 
   //this is for the getting the 'current user details'.
   const currUserPodcasts = useSelector((state) => state.currentUserPodcasts.currentUserPodcasts);
@@ -110,6 +110,7 @@ function Profile() {
         const podcastsData = [];
         querySnapshot.forEach((doc) => {
 
+          // console.log("in use effect")
           console.log("doc", doc.data().createdBy)
           if (doc.data().createdBy === user1.uid) {
             console.log("one")
@@ -137,8 +138,8 @@ function Profile() {
       const userDoc = await getDoc(doc(db, "users", user1.uid));
       const userData = userDoc.data();
 
-      console.log("userData", userDoc.data().profileImage);
-      setPhotoURL(userDoc.data().profileImage);
+      console.log("userData", userData);
+      setPhotoURL(userDoc.data().proImg);
     }
     fun();
   }, [photoURL]);
