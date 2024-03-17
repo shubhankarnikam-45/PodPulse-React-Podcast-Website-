@@ -19,6 +19,8 @@ import HomePage from "./pages/HomePage";
 import Logout from "./pages/Logout";
 
 function App() {
+
+  //redux dispatch().
   const dispatch = useDispatch();
 
   //here we use the 'useEffect()' because when user not logout .
@@ -65,6 +67,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/sign" element={<SignUpPage />} />
+
+          {/* below all are private routes this are accisible only when user is login. */}
           <Route element={<PrivateRoutes />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/logout" element={<Logout />} />

@@ -14,10 +14,13 @@ function FileInput({ accept, id, fileHandleFnc, text }) {
     <>
       <label
         htmlFor={id}
+        // when file is selected then border is white
         className={`custom-input ${!fileSelected ? "label-input" : "active"}`}
       >
         {fileSelected ? `The File ${fileSelected} was Selected` : text}
       </label>
+
+      {/* here we use the 'accept' parametr to specify the which type of file user . */}
       <input
         type="file"
         accept={accept}

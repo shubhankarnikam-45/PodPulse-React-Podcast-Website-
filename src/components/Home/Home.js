@@ -9,9 +9,13 @@ import HeroImage from '../../Images/hero.png'
 import Header from '../common/Header';
 import { auth } from '../../firebase';
 const Home = () => {
+
+    //
     const navigate = useNavigate();
 
+    //current user get by the firebase.
     const user = auth.currentUser;
+
     return (
         <>
             <Header />

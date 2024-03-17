@@ -10,7 +10,7 @@ import InputComponent from "../components/common/Input";
 function PodcastsPage() {
   const dispatch = useDispatch();
 
-  console.log("dispatch")
+
   const podcasts = useSelector((state) => state.podcasts.podcasts);
   const [search, setSearch] = useState("");
 
@@ -58,6 +58,7 @@ function PodcastsPage() {
             {filteredPodcasts.map((item) => {
               return (
                 <PodcastCard
+
                   key={item.id}
                   id={item.id}
                   title={item.title}

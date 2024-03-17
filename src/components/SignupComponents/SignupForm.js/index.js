@@ -48,6 +48,9 @@ function SignupForm() {
           storage,
           `podcasts/${auth.currentUser.uid}/${Date.now()}`
         );
+
+        
+
         await uploadBytes(displayImageRef, profileImage);
 
         const displayImageUrl = await getDownloadURL(displayImageRef);

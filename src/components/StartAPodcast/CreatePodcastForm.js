@@ -40,6 +40,7 @@ function CreatePodcastForm() {
         await uploadBytes(displayImageRef, displayImage);
 
         const displayImageUrl = await getDownloadURL(displayImageRef);
+        
         const podcastData = {
           title: title,
           description: desc,
