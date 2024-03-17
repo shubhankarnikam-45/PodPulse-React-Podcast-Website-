@@ -138,7 +138,7 @@ function Profile() {
       const userDoc = await getDoc(doc(db, "users", user1.uid));
       const userData = userDoc.data();
 
-      console.log("userData", userData);
+      console.log("userData", userData.proImg);
       setPhotoURL(userDoc.data().proImg);
     }
     fun();
