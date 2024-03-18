@@ -213,7 +213,7 @@ function Profile() {
           {/* Add your content here */}
         </div>
 
-        <div className="section scrollable">
+        <div className="scrollable">
           {/* Content for the second section */}
           <h1>My Podcasts</h1>
           <div className="scrollable-content">

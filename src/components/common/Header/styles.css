@@ -1,9 +1,17 @@
 .navbar {
+  position: sticky !important;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1.5rem;
   border-bottom: 2px solid var(--back) !important;
+  /* background-color: #3A5A60 !important; */
+  background-color: #475573 !important;
+
+  z-index: 2000 !important;
+  width: 100%;
+
 }
 
 .links {

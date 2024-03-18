@@ -42,9 +42,9 @@ function PodcastsPage() {
   );
 
   return (
-    <div>
+    <div className=" hide-scrollbar">
       <Header />
-      <div className="input-wrapper" style={{ marginTop: "2rem" }}>
+      <div className="input-wrapper " style={{ marginTop: "2rem" }}>
         <h1>Discover Podcasts</h1>
         <InputComponent
           state={search}

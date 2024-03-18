@@ -18,6 +18,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--theme);
   color: var(--white);
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -120,5 +121,12 @@ a {
 
   display: flex;
   margin-left: 170px;
+
+}
+
+
+/* hide scroll bar */
+::-webkit-scrollbar {
+  display: none;
 
 }

@@ -1,18 +1,35 @@
 .container {
     display: flex;
-    height: 100vh;
+    height: 650px;
     /* Adjust as needed */
+    overflow-x: hidden !important;
+
 
 }
 
 .section {
     flex: 1;
+    position: fixed;
+    width: 50vw;
+    height: 618px;
     padding: 20px;
     border: 1px solid #ccc;
 }
 
 .scrollable {
+    /* display: flex; */
+    width: 47vw;
     overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    position: relative;
+    left: 810px;
+    border: 1px solid #ccc;
+
+}
+
+.scrollable h1 {
+    text-align: center;
 }
 
 .scrollable-content {
@@ -40,6 +57,7 @@
 
 .podcasts-flex {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;

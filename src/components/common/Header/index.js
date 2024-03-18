@@ -18,14 +18,6 @@ function Header() {
           Home
         </Link>
 
-        {!user1 ? (<Link to="/sign" className={currentPath == "/sign" ? "active" : ""}>
-          Signup
-        </Link>) : (<Link to="/logout" className={currentPath == "/logout" ? "active" : ""}>
-          Logout
-        </Link>)}
-
-
-
         <Link
           to="/podcasts"
           className={currentPath == "/podcasts" ? "active" : ""}
@@ -44,6 +36,12 @@ function Header() {
         >
           Profile
         </Link>
+
+        {!user1 ? (<Link to="/sign" className={currentPath == "/sign" ? "active" : ""}>
+          Signup
+        </Link>) : (<Link to="/logout" className={currentPath == "/logout" ? "active" : ""}>
+          Logout
+        </Link>)}
       </div>
     </div>
   );
