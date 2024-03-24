@@ -72,11 +72,11 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/sign" element={<SignUpPage />} />
           <Route path="/adminlogin" element={<LoginFormAdmin />} />
-          <Route path="/admin" element={<AdminPage />} />
+
           {/* <Route path="/admin/main" element={< />} / > */}
           {/* below all are private routes this are accisible only when user is login. */}
           < Route element={<PrivateRoutes />}>
-
+            <Route path="/admin" element={<AdminPage />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/create-a-podcast" element={<CreateAPodcastPage />} />
