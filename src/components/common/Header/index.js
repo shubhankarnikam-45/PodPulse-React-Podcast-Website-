@@ -37,6 +37,13 @@ function Header() {
           Profile
         </Link>
 
+        <Link
+          to="/adminlogin"
+          className={currentPath == "/adminlogin" ? "active" : ""}
+        >
+          Admin
+        </Link>
+
         {!user1 ? (<Link to="/sign" className={currentPath == "/sign" ? "active" : ""}>
           Signup
         </Link>) : (<Link to="/logout" className={currentPath == "/logout" ? "active" : ""}>

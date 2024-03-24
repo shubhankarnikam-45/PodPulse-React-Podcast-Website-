@@ -17,6 +17,9 @@ import PodcastDetailsPage from "./pages/PodcastDetails";
 import CreateAnEpisodePage from "./pages/CreateAnEpisode";
 import HomePage from "./pages/HomePage";
 import Logout from "./pages/Logout";
+import AdminPage from "./pages/AdminPage";
+import LoginFormAdmin from "./components/SignupComponents/LoginFormAdmin/LoginFormAdmin";
+
 
 function App() {
 
@@ -63,13 +66,17 @@ function App() {
   return (
     <div className="App">
       <ToastContainer />
+
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/sign" element={<SignUpPage />} />
-
+          <Route path="/adminlogin" element={<LoginFormAdmin />} />
+          <Route path="/admin" element={<AdminPage />} />
+          {/* <Route path="/admin/main" element={< />} / > */}
           {/* below all are private routes this are accisible only when user is login. */}
-          <Route element={<PrivateRoutes />}>
+          < Route element={<PrivateRoutes />}>
+
             <Route path="/profile" element={<Profile />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/create-a-podcast" element={<CreateAPodcastPage />} />
@@ -77,7 +84,7 @@ function App() {
             <Route path="/podcast/:id" element={<PodcastDetailsPage />} />
             <Route
               path="/podcast/:id/create-episode"
-              element={<CreateAnEpisodePage/>}
+              element={<CreateAnEpisodePage />}
             />
           </Route>
         </Routes>
