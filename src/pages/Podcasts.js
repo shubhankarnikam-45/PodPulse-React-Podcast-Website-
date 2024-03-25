@@ -35,7 +35,7 @@ function PodcastsPage() {
     };
   }, [dispatch]);
 
-  console.log(podcasts);
+
 
   var filteredPodcasts = podcasts.filter((item) =>
     item.title.trim().toLowerCase().includes(search.trim().toLowerCase())

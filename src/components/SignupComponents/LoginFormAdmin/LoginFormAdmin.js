@@ -4,9 +4,10 @@ import Button from "../../common/Button";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../../firebase";
 import { collection, doc, getDoc, onSnapshot, query } from "firebase/firestore";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../../slices/userSlice";
+import { setAdminState } from "../../../slices/adminSlice";
 import { toast } from "react-toastify";
 import Header from "../../common/Header";
 import "./styles.css"
@@ -17,7 +18,15 @@ function LoginFormAdmin() {
     const [data, setData] = useState([]);
     const navigate = useNavigate();
 
-    console.log("data", data)
+
+    //dispatch function.
+    const dispatch = useDispatch();
+
+    const adminState = useSelector((state) => state.admin.adminState);
+    console.log("admin state", adminState)
+    //if admin is correctly login.
+    const [isAdminLogin, setIsAdminLogin] = useState(false);
+
 
     //here we get the all podcast data to show the 'filter output'
     useEffect(() => {
@@ -26,7 +35,7 @@ function LoginFormAdmin() {
             (querySnapshot) => {
                 const userData = [];
                 querySnapshot.forEach((doc) => {
-                    console.log(doc.data());
+
                     userData.push({ id: doc.id, ...doc.data() });
                 });
                 setData(userData);
@@ -47,7 +56,13 @@ function LoginFormAdmin() {
         setLoading(true);
         if (data[0].id == email && data[0].password == password || data[1].id == email && data[1].password == password) {
             console.log("admin")
+            setIsAdminLogin(true);
+            dispatch(setAdminState(true));
+
+
             navigate("/admin");
+
+
         } else {
             toast.error("Make sure email and password are not empty");
             setLoading(false);

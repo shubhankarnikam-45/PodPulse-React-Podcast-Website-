@@ -19,7 +19,16 @@ img {
     margin: 0px;
 }
 
+.section1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
 
+.section1 h1 {
+    text-align: center;
+    margin-left: 700px;
+}
 
 
 img:hover {

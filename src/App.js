@@ -9,7 +9,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./firebase";
 import { doc, onSnapshot } from "firebase/firestore";
 import { setUser } from "./slices/userSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PrivateRoutes from "./components/common/PrivateRoutes";
 import CreateAPodcastPage from "./pages/CreateAPodcast";
 import PodcastsPage from "./pages/Podcasts";
@@ -19,12 +19,15 @@ import HomePage from "./pages/HomePage";
 import Logout from "./pages/Logout";
 import AdminPage from "./pages/AdminPage";
 import LoginFormAdmin from "./components/SignupComponents/LoginFormAdmin/LoginFormAdmin";
+import PrivateRoutesForAdmin from "./components/common/PrivateRoutesForAdmin";
 
 
 function App() {
 
   //redux dispatch().
   const dispatch = useDispatch();
+
+  
 
   //here we use the 'useEffect()' because when user not logout .
   //then state is  must be preserved.
@@ -76,7 +79,7 @@ function App() {
           {/* <Route path="/admin/main" element={< />} / > */}
           {/* below all are private routes this are accisible only when user is login. */}
           < Route element={<PrivateRoutes />}>
-            <Route path="/admin" element={<AdminPage />} />
+            {/* <Route path="/admin" element={<AdminPage />} /> */}
             <Route path="/profile" element={<Profile />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/create-a-podcast" element={<CreateAPodcastPage />} />
@@ -86,6 +89,9 @@ function App() {
               path="/podcast/:id/create-episode"
               element={<CreateAnEpisodePage />}
             />
+          </Route>
+          < Route element={<PrivateRoutesForAdmin />}>
+            <Route path="/admin" element={<AdminPage />} />
           </Route>
         </Routes>
       </Router>

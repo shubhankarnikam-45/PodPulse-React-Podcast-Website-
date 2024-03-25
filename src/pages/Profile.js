@@ -90,7 +90,7 @@ function Profile() {
 
   const [photoURL, setPhotoURL] = useState('')
 
-  console.log("photo", photoURL)
+
 
   //dispatch.
   const dispatch = useDispatch();
@@ -100,7 +100,7 @@ function Profile() {
   //this is for the getting the 'current user details'.
   const currUserPodcasts = useSelector((state) => state.currentUserPodcasts.currentUserPodcasts);
 
-  console.log("curr user podcasts", currUserPodcasts)
+
 
   //this if for current user all podcasts.
   useEffect(() => {
@@ -110,10 +110,10 @@ function Profile() {
         const podcastsData = [];
         querySnapshot.forEach((doc) => {
 
-          // console.log("in use effect")
-          console.log("doc", doc.data().createdBy)
+          
+          
           if (doc.data().createdBy === user1.uid) {
-            console.log("one")
+            
             podcastsData.push({ id: doc.id, ...doc.data() });
           }
 
@@ -138,7 +138,7 @@ function Profile() {
       const userDoc = await getDoc(doc(db, "users", user1.uid));
       const userData = userDoc.data();
 
-      console.log("userData", userData.proImg);
+      
       setPhotoURL(userDoc.data().proImg);
     }
     fun();
@@ -147,7 +147,7 @@ function Profile() {
   //this is redux method to get the state.
   const user = useSelector((state) => state.user.user);
 
-  console.log("My User", user);
+
   if (!user) {
     return <Loader />;
   }
@@ -166,10 +166,6 @@ function Profile() {
   //when user click on the delete butotn.
   const handleDelete = async (e, item) => {
     e.stopPropagation();
-
-    console.log("clicked ");
-
-
     // const d = query(collection(db, 'podcasts'), where('id', '==', item));
     // console.log("docsnap", d)
     // const docSnap = await getDocs(d);

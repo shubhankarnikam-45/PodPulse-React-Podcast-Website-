@@ -13,6 +13,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import image from "../../assets/delete.png"
+
+import { setAdminState } from '../../slices/adminSlice';
+import { useDispatch } from 'react-redux';
+import Button from '../common/Button';
+import { useNavigate } from 'react-router-dom';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -51,14 +56,12 @@ const rows = [
 ];
 
 function Admin() {
-
- 
-
-
   const [data, setData] = useState([]);
 
-  console.log("admin module", data)
+  //dispatch function.
+  const dispatch = useDispatch();
 
+  const navigate = useNavigate()
   //here we get the all podcast data to show the 'filter output'
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -66,7 +69,7 @@ function Admin() {
       (querySnapshot) => {
         const userData = [];
         querySnapshot.forEach((doc) => {
-          console.log(doc.data());
+
           userData.push({ id: doc.id, ...doc.data() });
         });
         setData(userData);
@@ -81,9 +84,18 @@ function Admin() {
       unsubscribe();
     };
   }, []);
+
+  //logot function.
+  function handleLogout() {
+    dispatch(setAdminState(false));
+  }
   return (
     <div className='parent'>
-      <h1>Admin</h1>
+      <div className='section1'>
+        <h1>Admin</h1>
+        <Button text={"Logout"} onClick={handleLogout} width={140} height={10} />
+      </div>
+
       <h2>Manage Users</h2>
 
       {/* table */}

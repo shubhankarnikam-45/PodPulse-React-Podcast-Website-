@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   podcasts: [],
 };
-
+console.log("in slice ");
 const podcastSlice = createSlice({
   name: "podcasts",
   initialState,
