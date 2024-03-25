@@ -120,7 +120,7 @@ function Admin() {
                 </StyledTableCell>
                 <StyledTableCell align="right">{row.name}</StyledTableCell>
                 <StyledTableCell align="right">{row.id}</StyledTableCell>
-                <StyledTableCell align="right"><a href={row.proImg}>Profile Image</a></StyledTableCell>
+                <StyledTableCell align="right"><a href={row.proImg} target="_blank">Profile Image</a></StyledTableCell>
                 <StyledTableCell align="right"><img src={image} alt='img' /></StyledTableCell>
               </StyledTableRow>
             ))}
