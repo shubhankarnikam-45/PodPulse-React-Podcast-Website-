@@ -25,6 +25,11 @@ img {
     justify-content: space-evenly;
 }
 
+.section2{
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+}
 .section1 h1 {
     text-align: center;
     margin-left: 700px;
@@ -33,4 +38,16 @@ img {
 
 img:hover {
     transform: scale(1.1);
+}
+
+.horizontalRow:hover {
+    transform: scale(1.01);
+    cursor: pointer;
+}
+
+.apply-filter{
+    font-weight:500;
+}
+.btn{
+    border-radius: 12px;
 }

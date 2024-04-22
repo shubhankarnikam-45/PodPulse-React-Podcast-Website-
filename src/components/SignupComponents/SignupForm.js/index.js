@@ -22,6 +22,11 @@ function SignupForm() {
   const dispatch = useDispatch();
 
   const handleSignup = async () => {
+
+
+     // Get the current date and time
+     const registrationDateTime = new Date();
+
     console.log("Handling Signup...");
 
     console.log("prifile image", profileImage)
@@ -61,7 +66,8 @@ function SignupForm() {
           name: fullName,
           email: user.email,
           uid: user.uid,
-          proImg: displayImageUrl
+          proImg: displayImageUrl,
+          registrationDate: registrationDateTime
         });
 
         // Save the data in the 'redux' store.
@@ -70,7 +76,8 @@ function SignupForm() {
             name: fullName,
             email: user.email,
             uid: user.uid,
-            proImg: displayImageUrl
+            proImg: displayImageUrl,
+            registrationDate: registrationDateTime
           })
         );
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./styles.css"
-import { collection, onSnapshot, query } from 'firebase/firestore';
+import { collection, deleteDoc, doc, onSnapshot, query, where } from 'firebase/firestore';
 import { db } from '../../firebase';
 
 // import * as React from 'react';
@@ -17,7 +17,13 @@ import image from "../../assets/delete.png"
 import { setAdminState } from '../../slices/adminSlice';
 import { useDispatch } from 'react-redux';
 import Button from '../common/Button';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { getAuth } from 'firebase/auth';
+import DateRangePicker from '../common/DateTimePicker/DateRangePicker';
+// import { Timestamp } from 'firebase/firestore'
+import firebase from 'firebase/compat/app';
+import { Timestamp } from 'firebase/firestore';
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -37,29 +43,86 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
-) {
-  return { name, calories, fat, carbs, protein };
-}
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+
 
 function Admin() {
+
+
   const [data, setData] = useState([]);
 
+  //overalll data.
+  const [overallData, setOverallData] = useState([]);
+
+  //to check the date picker empty or not.
+  const [datePickerEmptyOrNot, setDatePickerEmptyOrNot] = useState(false);
+
+  const [filteredUsers, setFilteredUsers] = useState([]);
+
+  console.log("filerted data", filteredUsers)
+  console.log("user dataa", data);
+  console.log("overall datta", overallData)
+
+  console.log("date time pekcer", datePickerEmptyOrNot)
+  //getting the current date from the 'timestamp'.
+  // console.log("current date",data[0].registrationDate.toDate());
   //dispatch function.
   const dispatch = useDispatch();
+
+
+
+
+  //this function handles the filter functinality.
+  async function onDateRangeChange(startDate, endDate) {
+    console.log("sd", startDate)
+    console.log("ed", endDate)
+    try {
+
+      const date1 = new Date(startDate);
+      const date2 = new Date(endDate);
+
+
+      // Convert JavaScript Date objects to Firestore Timestamp objects
+      // const myTimestamp = Timestamp.fromDate(startDate);
+      console.log("start date", date1);
+      console.log("end date", date2);
+
+      const startDateTimestamp = Timestamp.fromDate(date1);
+      const endDateTimestamp = Timestamp.fromDate(date2);
+
+
+      console.log("start date", startDateTimestamp);
+      console.log("end date", endDateTimestamp);
+      const q = query(collection(db, 'users'), where('registrationDate', '>=', startDateTimestamp), where('registrationDate', '<=', endDateTimestamp));
+      const querySnapshot = await onSnapshot(q, (snapshot) => {
+        const users = [];
+        snapshot.forEach((doc) => {
+          users.push(doc.data());
+        });
+        setFilteredUsers(users);
+        // setData(users);
+      });
+    } catch (error) {
+      console.error("Error filtering users:", error);
+    }
+
+  }
+
+  //when date time picker change.
+  useEffect(() => {
+    console.log("filter data is triggered.")
+    console.log("isze", filteredUsers.length);
+    if (filteredUsers.length != 0) {
+      setData(filteredUsers);
+    }
+    else if(datePickerEmptyOrNot == true){
+      setData(overallData);
+    }
+    else
+    {
+      setData([]);
+    }
+  }, [filteredUsers])
 
   const navigate = useNavigate()
   //here we get the all podcast data to show the 'filter output'
@@ -72,7 +135,8 @@ function Admin() {
 
           userData.push({ id: doc.id, ...doc.data() });
         });
-        setData(userData);
+        setOverallData(userData);
+        setData(userData)
 
       },
       (error) => {
@@ -89,6 +153,37 @@ function Admin() {
   function handleLogout() {
     dispatch(setAdminState(false));
   }
+
+  //function in which user can delete.
+  function handleDeleteUser(e, id) {
+    e.stopPropagation();
+    // Specify the collection and document ID of the document you want to delete
+    const docRef = doc(db, "users", id);
+    console.log("docref", docRef)
+
+    // Delete the document
+    deleteDoc(docRef)
+      .then(() => {
+        console.log("document deleted...");
+      })
+
+    //delete the authenticated user.
+    // getAuth()
+    //   .deleteUser(id)
+    //   .then(() => {
+    //     console.log('Successfully deleted user');
+    //   })
+    //   .catch((error) => {
+    //     console.log('Error deleting user:', error);
+    //   });
+
+  }
+
+  //when admin click on the row.
+  function handleRowClick(id) {
+    console.log("row is clicked.", id);
+    navigate(`/user/${id}`)
+  }
   return (
     <div className='parent'>
       <div className='section1'>
@@ -96,7 +191,17 @@ function Admin() {
         <Button text={"Logout"} onClick={handleLogout} width={140} height={10} />
       </div>
 
-      <h2>Manage Users</h2>
+      <div className='section2'>
+        <h2>Manage Users</h2>
+        <div>
+          <span className='apply-filter'>Apply Filter</span>
+          <DateRangePicker onDateRangeChange={onDateRangeChange} setDatePickerEmptyOrNot={setDatePickerEmptyOrNot} />
+          
+        </div>
+
+      </div>
+
+
 
       {/* table */}
       <TableContainer className='table-container' sx={{ minWidth: 700, width: 1400, margin: "auto" }} component={Paper}>
@@ -107,24 +212,31 @@ function Admin() {
               <StyledTableCell align="right">Name</StyledTableCell>
               <StyledTableCell align="right">User ID</StyledTableCell>
               <StyledTableCell align="right">Profile Image</StyledTableCell>
+              <StyledTableCell align="right">Date</StyledTableCell>
               <StyledTableCell align="right">Detele Profile</StyledTableCell>
 
 
             </TableRow>
           </TableHead>
+
+
           <TableBody>
             {data.map((row) => (
-              <StyledTableRow key={row.id}>
+              // <Link to={`/user/${row.id}`}>
+              <StyledTableRow className='horizontalRow' key={row.id} onClick={() => handleRowClick(row.id)}>
                 <StyledTableCell component="th" scope="row">
                   {row.email}
                 </StyledTableCell>
                 <StyledTableCell align="right">{row.name}</StyledTableCell>
-                <StyledTableCell align="right">{row.id}</StyledTableCell>
+                <StyledTableCell align="right">{row.uid}</StyledTableCell>
                 <StyledTableCell align="right"><a href={row.proImg} target="_blank">Profile Image</a></StyledTableCell>
-                <StyledTableCell align="right"><img src={image} alt='img' /></StyledTableCell>
+                <StyledTableCell align="right">{row.registrationDate.toDate().toLocaleString()}</StyledTableCell>
+                <StyledTableCell align="right" onClick={(e) => handleDeleteUser(e, row.id)}><img src={image} alt='img' /></StyledTableCell>
               </StyledTableRow>
+              // </Link>
             ))}
           </TableBody>
+
         </Table>
       </TableContainer>
     </div >

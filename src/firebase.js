@@ -35,9 +35,13 @@
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore , Timestamp} from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
+// import firebase from "firebase/compat/app";
+// import 'firebase/firestore'; // Import Firestore if you're using it
+// const { getAuth } = require('firebase-admin/auth');
+// const { initializeApp } = require('firebase-admin/app');
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -62,4 +66,4 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 const auth = getAuth(app);
 
-export { auth, db, storage };
+export { auth, db, storage , Timestamp};

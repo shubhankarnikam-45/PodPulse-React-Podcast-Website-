@@ -20,6 +20,11 @@ function CreatePodcastForm() {
   const dispatch = useDispatch();
 
   const handleSubmit = async () => {
+
+    // Get the current date and time
+    const dateOfCreation = new Date();
+
+
     if (title && desc && displayImage && bannerImage) {
       setLoading(true);
       // 1. Upload files -> get downloadable links
@@ -47,6 +52,7 @@ function CreatePodcastForm() {
           bannerImage: bannerImageUrl,
           displayImage: displayImageUrl,
           createdBy: auth.currentUser.uid,
+          dateCreated: dateOfCreation
         };
 
         const docRef = await addDoc(collection(db, "podcasts"), podcastData);

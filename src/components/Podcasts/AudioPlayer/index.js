@@ -114,6 +114,7 @@ function AudioPlayer({ audioSrc, image }) {
       <p className="audio-btn" onClick={toggleMute}>
         {!isMute ? <FaVolumeUp /> : <FaVolumeMute />}
       </p>
+      
       <input
         type="range"
         value={volume}

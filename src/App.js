@@ -20,14 +20,14 @@ import Logout from "./pages/Logout";
 import AdminPage from "./pages/AdminPage";
 import LoginFormAdmin from "./components/SignupComponents/LoginFormAdmin/LoginFormAdmin";
 import PrivateRoutesForAdmin from "./components/common/PrivateRoutesForAdmin";
-
+import UserDetailsPage from "./pages/UserDetailsPage.js";
 
 function App() {
 
   //redux dispatch().
   const dispatch = useDispatch();
 
-  
+
 
   //here we use the 'useEffect()' because when user not logout .
   //then state is  must be preserved.
@@ -92,6 +92,7 @@ function App() {
           </Route>
           < Route element={<PrivateRoutesForAdmin />}>
             <Route path="/admin" element={<AdminPage />} />
+            <Route path="/user/:id" element={<UserDetailsPage />} />
           </Route>
         </Routes>
       </Router>
