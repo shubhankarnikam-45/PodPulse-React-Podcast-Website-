@@ -40,6 +40,13 @@ function Header() {
           Profile
         </Link>
 
+        <Link
+          to="/enquiry-form"
+          className={currentPath == "/enquiry-form" ? "active" : ""}
+        >
+          Enquiry Form
+        </Link>
+
         {adminState ? (
           <Link
             to="/admin"

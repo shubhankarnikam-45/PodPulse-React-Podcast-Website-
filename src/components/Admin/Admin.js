@@ -59,11 +59,11 @@ function Admin() {
 
   const [filteredUsers, setFilteredUsers] = useState([]);
 
-  console.log("filerted data", filteredUsers)
-  console.log("user dataa", data);
-  console.log("overall datta", overallData)
+  // console.log("filerted data", filteredUsers)
+  // console.log("user dataa", data);
+  // console.log("overall datta", overallData)
 
-  console.log("date time pekcer", datePickerEmptyOrNot)
+  // console.log("date time pekcer", datePickerEmptyOrNot)
   //getting the current date from the 'timestamp'.
   // console.log("current date",data[0].registrationDate.toDate());
   //dispatch function.
@@ -74,8 +74,8 @@ function Admin() {
 
   //this function handles the filter functinality.
   async function onDateRangeChange(startDate, endDate) {
-    console.log("sd", startDate)
-    console.log("ed", endDate)
+    // console.log("sd", startDate)
+    // console.log("ed", endDate)
     try {
 
       const date1 = new Date(startDate);
@@ -84,15 +84,15 @@ function Admin() {
 
       // Convert JavaScript Date objects to Firestore Timestamp objects
       // const myTimestamp = Timestamp.fromDate(startDate);
-      console.log("start date", date1);
-      console.log("end date", date2);
+      // console.log("start date", date1);
+      // console.log("end date", date2);
 
       const startDateTimestamp = Timestamp.fromDate(date1);
       const endDateTimestamp = Timestamp.fromDate(date2);
 
 
-      console.log("start date", startDateTimestamp);
-      console.log("end date", endDateTimestamp);
+      // console.log("start date", startDateTimestamp);
+      // console.log("end date", endDateTimestamp);
       const q = query(collection(db, 'users'), where('registrationDate', '>=', startDateTimestamp), where('registrationDate', '<=', endDateTimestamp));
       const querySnapshot = await onSnapshot(q, (snapshot) => {
         const users = [];
@@ -110,16 +110,15 @@ function Admin() {
 
   //when date time picker change.
   useEffect(() => {
-    console.log("filter data is triggered.")
-    console.log("isze", filteredUsers.length);
+    // console.log("filter data is triggered.")
+    // console.log("isze", filteredUsers.length);
     if (filteredUsers.length != 0) {
       setData(filteredUsers);
     }
-    else if(datePickerEmptyOrNot == true){
+    else if (datePickerEmptyOrNot == true) {
       setData(overallData);
     }
-    else
-    {
+    else {
       setData([]);
     }
   }, [filteredUsers])
@@ -159,7 +158,7 @@ function Admin() {
     e.stopPropagation();
     // Specify the collection and document ID of the document you want to delete
     const docRef = doc(db, "users", id);
-    console.log("docref", docRef)
+
 
     // Delete the document
     deleteDoc(docRef)
@@ -181,12 +180,18 @@ function Admin() {
 
   //when admin click on the row.
   function handleRowClick(id) {
-    console.log("row is clicked.", id);
+    // console.log("row is clicked.", id);
     navigate(`/user/${id}`)
+  }
+
+  function handleEnquiryUsers() {
+    //after clicking on this function we navigate to the user enquiry form
+    navigate("/enquiry-form-table-format");
   }
   return (
     <div className='parent'>
       <div className='section1'>
+        <Button style={{ backgroundColor: "pink" }} onClick={handleEnquiryUsers} text={"Enquiry Form Details"} width={140} height={10} bcolor={"red"} />
         <h1>Admin</h1>
         <Button text={"Logout"} onClick={handleLogout} width={140} height={10} />
       </div>
@@ -196,7 +201,7 @@ function Admin() {
         <div>
           <span className='apply-filter'>Apply Filter</span>
           <DateRangePicker onDateRangeChange={onDateRangeChange} setDatePickerEmptyOrNot={setDatePickerEmptyOrNot} />
-          
+
         </div>
 
       </div>
@@ -210,7 +215,7 @@ function Admin() {
             <TableRow>
               <StyledTableCell> User Email</StyledTableCell>
               <StyledTableCell align="right">Name</StyledTableCell>
-              <StyledTableCell align="right">User ID</StyledTableCell>
+              {/* <StyledTableCell align="right">User ID</StyledTableCell> */}
               <StyledTableCell align="right">Profile Image</StyledTableCell>
               <StyledTableCell align="right">Date</StyledTableCell>
               <StyledTableCell align="right">Detele Profile</StyledTableCell>
@@ -228,7 +233,7 @@ function Admin() {
                   {row.email}
                 </StyledTableCell>
                 <StyledTableCell align="right">{row.name}</StyledTableCell>
-                <StyledTableCell align="right">{row.uid}</StyledTableCell>
+                {/* <StyledTableCell align="right">{row.uid}</StyledTableCell> */}
                 <StyledTableCell align="right"><a href={row.proImg} target="_blank">Profile Image</a></StyledTableCell>
                 <StyledTableCell align="right">{row.registrationDate.toDate().toLocaleString()}</StyledTableCell>
                 <StyledTableCell align="right" onClick={(e) => handleDeleteUser(e, row.id)}><img src={image} alt='img' /></StyledTableCell>

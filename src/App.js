@@ -21,6 +21,8 @@ import AdminPage from "./pages/AdminPage";
 import LoginFormAdmin from "./components/SignupComponents/LoginFormAdmin/LoginFormAdmin";
 import PrivateRoutesForAdmin from "./components/common/PrivateRoutesForAdmin";
 import UserDetailsPage from "./pages/UserDetailsPage.js";
+import EnquiryForm from "./components/EnquiryForm/EnquiryForm.js";
+import EnquiryFormInTabularFormat from "./components/EnquiryForm/EnquiryFormInTabularFormat.js";
 
 function App() {
 
@@ -85,6 +87,7 @@ function App() {
             <Route path="/create-a-podcast" element={<CreateAPodcastPage />} />
             <Route path="/podcasts" element={<PodcastsPage />} />
             <Route path="/podcast/:id" element={<PodcastDetailsPage />} />
+            <Route path="/enquiry-form" element={<EnquiryForm />} />
             <Route
               path="/podcast/:id/create-episode"
               element={<CreateAnEpisodePage />}
@@ -92,6 +95,7 @@ function App() {
           </Route>
           < Route element={<PrivateRoutesForAdmin />}>
             <Route path="/admin" element={<AdminPage />} />
+            <Route path="/enquiry-form-table-format" element={<EnquiryFormInTabularFormat/>} />
             <Route path="/user/:id" element={<UserDetailsPage />} />
           </Route>
         </Routes>
