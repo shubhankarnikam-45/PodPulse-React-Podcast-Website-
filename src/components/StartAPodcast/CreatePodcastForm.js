@@ -60,7 +60,7 @@ function CreatePodcastForm() {
         setDesc("");
         setBannerImage(null);
         setDisplayImage(null);
-        toast.success("Podcast Created!");
+        toast.success("Podcast Created Successfully...!");
         setLoading(false);
       } catch (e) {
         toast.error(e.message);

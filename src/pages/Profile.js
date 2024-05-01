@@ -186,6 +186,12 @@ function Profile() {
 
   }
 
+  //when user click on edit button.
+  const handleEditInfo = ()=>{
+    toast.info("We Currently Working on this feature :)",{
+      position: "top-left",
+    })
+  }
   return (
 
     <div className="parent-div">
@@ -198,11 +204,25 @@ function Profile() {
           <div className="input-wrapper-profile-page" >
             <div className="profilePic">
               <img src={photoURL} alt="profilePicture" />
+              <div><Button onClick ={handleEditInfo} text={"Edit Image"} width={"90px"} height={"1px"}></Button></div>
             </div>
+
             <div className="inner-field-profile">
-              <h1><strong style={{ color: "wheat" }}>Name</strong>  : {user.name}</h1>
+              <div className="profile-content-div">
+              <h1><strong style={{ color: "wheat" }}>Name</strong>  : {user.name}</h1> 
+              <div><Button onClick ={handleEditInfo} text={"Edit  Name"} width={"90px"} height={"1px"}>Edit</Button></div>
+              </div>
+              
+              <div className="profile-content-div">
               <h1><strong style={{ color: "wheat" }}>Email</strong> : {user.email}</h1>
+              <div><Button onClick ={handleEditInfo} text={"Edit Email"} width={"90px"} height={"1px"}>Edfit</Button></div>
+              </div>
+              
+              {/* <div className="profile-content-div">
               <h1><strong style={{ color: "wheat" }}>User Id</strong> : {user.uid}</h1>
+              <div><Button text={"Edit"} width={"20px"} height={"1px"}>Edit</Button></div>
+              </div> */}
+              
             </div>
             <Button text={"Logout"} onClick={handleLogout} width={300} />
           </div>

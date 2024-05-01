@@ -3,6 +3,7 @@ import "./styles.css";
 import { Link, useLocation } from "react-router-dom";
 import { auth } from "../../../firebase";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 function Header() {
   const location = useLocation();
@@ -12,6 +13,11 @@ function Header() {
   //here we get the admin state.
   const adminState = useSelector((state) => state.admin.adminState);
   console.log("admin state1", adminState)
+
+  // if(!user1)
+  // {
+  //   toast.info("Sign-Up or Login to Use");
+  // }
 
   return (
     <div className="navbar">
@@ -33,6 +39,7 @@ function Header() {
         >
           Start A Podcast
         </Link>
+
         <Link
           to="/profile"
           className={currentPath == "/profile" ? "active" : ""}
