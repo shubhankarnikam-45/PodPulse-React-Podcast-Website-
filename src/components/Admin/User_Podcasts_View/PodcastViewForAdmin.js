@@ -1,14 +1,18 @@
 import { Timestamp, collection, deleteDoc, doc, onSnapshot, query, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { db } from '../firebase';
-import PodcastCard from '../components/Podcasts/PodcastCard';
-import "./UserDetailsPage.css"
-import Header from '../components/common/Header';
-import DateRangePicker from '../components/common/DateTimePicker/DateRangePicker';
 
 
-function UserDetailsPage() {
+import "./styles.css"
+
+import DateRangePicker from '../../common/DateTimePicker/DateRangePicker';
+import { db } from '../../../firebase';
+import PodcastCard from '../../Podcasts/PodcastCard';
+import Header from '../../common/Header';
+
+
+
+function PodcastViewForAdmin() {
 
   const [data, setData] = useState([]);
 
@@ -25,7 +29,7 @@ function UserDetailsPage() {
 
   const [currUserPodcasts, setCurrUserPodcasts] = useState([]);
 
-  console.log("filtered podcasts",filteredUsers)
+  console.log("filtered podcasts",currUserPodcasts)
 
   console.log("signal", datePickerEmptyOrNot)
 
@@ -42,10 +46,10 @@ function UserDetailsPage() {
 
 
 
-          if (doc.data().createdBy === id) {
+        //   if (doc.data().createdBy === id) {
 
             podcastsData.push({ id: doc.id, ...doc.data() });
-          }
+        //   }
           setCurrUserPodcasts(podcastsData);
           setOverallData(podcastsData);
 
@@ -85,7 +89,7 @@ function UserDetailsPage() {
 
       console.log("start date", startDateTimestamp);
       console.log("end date", endDateTimestamp);
-      const q = query(collection(db, 'podcasts'), where('dateCreated', '>=', startDateTimestamp), where('dateCreated', '<=', endDateTimestamp),where('createdBy', '==', id));
+      const q = query(collection(db, 'podcasts'), where('dateCreated', '>=', startDateTimestamp), where('dateCreated', '<=', endDateTimestamp));
       const querySnapshot = await onSnapshot(q, (snapshot) => {
         const users = [];
         snapshot.forEach((doc) => {
@@ -171,6 +175,7 @@ function UserDetailsPage() {
                   title={item.title}
                   displayImage={item.displayImage}
                   text={"delete"}
+                  authorName={item.nameOfUser}
                   onClick={(e) => handleDelete(e, item.id)}
                 />
               );
@@ -182,4 +187,4 @@ function UserDetailsPage() {
   )
 }
 
-export default UserDetailsPage
+export default PodcastViewForAdmin

@@ -20,7 +20,7 @@ import "./styles.css";
 import { Link } from "react-router-dom";
 import Button from "../../common/Button";
 
-function PodcastCard({ id, title, displayImage, text, onClick }) {
+function PodcastCard({ id, title, displayImage, text, onClick , authorName}) {
 
 
   return (
@@ -29,6 +29,7 @@ function PodcastCard({ id, title, displayImage, text, onClick }) {
         <div className="podcast-card">
           <img className="display-image-podcast" src={displayImage} />
           <p className="title-podcast">{title}</p>
+          <h5>Created By : {authorName}</h5>
 
 
         </div>

@@ -188,10 +188,16 @@ function Admin() {
     //after clicking on this function we navigate to the user enquiry form
     navigate("/enquiry-form-table-format");
   }
+
+  //after clicking on user podcast view.
+  function handlePodcastView(){
+    navigate("/podcast-view-for-admin")
+  }
   return (
     <div className='parent'>
       <div className='section1'>
         <Button style={{ backgroundColor: "pink" }} onClick={handleEnquiryUsers} text={"Enquiry Form Details"} width={140} height={10} bcolor={"red"} />
+        <Button style={{ backgroundColor: "pink" }} onClick={handlePodcastView} text={"User Podcasts View"} width={140} height={10} bcolor={"red"} />
         <h1>Admin</h1>
         <Button text={"Logout"} onClick={handleLogout} width={140} height={10} />
       </div>
