@@ -97,6 +97,7 @@ function App() {
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/enquiry-form-table-format" element={<EnquiryFormInTabularFormat/>} />
             <Route path="/user/:id" element={<UserDetailsPage />} />
+            <Route path="/podcast/:id" element={<PodcastDetailsPage />} />
           </Route>
         </Routes>
       </Router>

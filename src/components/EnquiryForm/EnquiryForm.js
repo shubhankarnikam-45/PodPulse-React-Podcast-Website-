@@ -107,7 +107,7 @@ useEffect(()=>{
       //here we adding the data into the database.
     const docRef = await addDoc(collection(db, "enquiry_data"), enquiryData);
     // setSuccessMessage()
-    toast.success("successfully added in watchlist")
+    toast.success("Enquiry Form submitted successfully....")
     setMessage("");
 
     }

@@ -146,7 +146,7 @@ function UserDetailsPage() {
     <div className='parent-div'>
       <Header />
       <div className='section2'>
-        <h2>Manage Users</h2>
+        <h2>Manage Podcasts</h2>
         <div>
           <span className='apply-filter'>Apply Filter</span>
           <DateRangePicker onDateRangeChange={onDateRangeChange} setDatePickerEmptyOrNot={setDatePickerEmptyOrNot} />
