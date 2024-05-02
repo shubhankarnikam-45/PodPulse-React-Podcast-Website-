@@ -176,6 +176,7 @@ function PodcastViewForAdmin() {
                   displayImage={item.displayImage}
                   text={"delete"}
                   authorName={item.nameOfUser}
+                  dateCreated={item.dateCreated}
                   onClick={(e) => handleDelete(e, item.id)}
                 />
               );

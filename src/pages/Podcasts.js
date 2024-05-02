@@ -64,6 +64,7 @@ function PodcastsPage() {
                   title={item.title}
                   displayImage={item.displayImage}
                   authorName={item.nameOfUser}
+                  dateCreated={item.dateCreated} 
                 />
               );
             })}
