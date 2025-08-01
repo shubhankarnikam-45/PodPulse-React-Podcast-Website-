@@ -8,10 +8,12 @@ import PodcastCard from "../components/Podcasts/PodcastCard";
 import InputComponent from "../components/common/Input";
 
 function PodcastsPage() {
+
   const dispatch = useDispatch();
 
 
   const podcasts = useSelector((state) => state.podcasts.podcasts);
+  
   const [search, setSearch] = useState("");
 
   //here we get the all podcast data to show the 'filter output'
@@ -36,6 +38,7 @@ function PodcastsPage() {
   }, [dispatch]);
 
 
+  
 
   var filteredPodcasts = podcasts.filter((item) =>
     item.title.trim().toLowerCase().includes(search.trim().toLowerCase())

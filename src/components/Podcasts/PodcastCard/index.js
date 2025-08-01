@@ -23,9 +23,10 @@ import Button from "../../common/Button";
 function PodcastCard({ id, title, displayImage, text, onClick , authorName, dateCreated}) {
 
   
-
+// console.log("In podcast ", dateCreated);
   // Convert Firebase Timestamp to JavaScript Date
 const dateObject = dateCreated.toDate();
+// console.log("finan date ",dateCreated)
 
 // Extract date components
 const year = dateObject.getFullYear();
@@ -35,7 +36,7 @@ const day = dateObject.getDate();
 // Forming the date string
 const dateString = `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
 
-console.log("current time",dateString); // Output format: YYYY-MM-DD
+// console.log("current time",dateString); // Output format: YYYY-MM-DD
 
   return (
     <div>

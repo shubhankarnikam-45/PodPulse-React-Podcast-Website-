@@ -12,7 +12,7 @@ function Header() {
   const user1 = auth.currentUser;
   //here we get the admin state.
   const adminState = useSelector((state) => state.admin.adminState);
-  console.log("admin state1", adminState)
+  // console.log("admin state1", adminState)
 
   // if(!user1)
   // {

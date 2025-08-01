@@ -89,14 +89,12 @@ function App() {
             <Route path="/podcasts" element={<PodcastsPage />} />
             <Route path="/podcast/:id" element={<PodcastDetailsPage />} />
             <Route path="/enquiry-form" element={<EnquiryForm />} />
-            <Route
-              path="/podcast/:id/create-episode"
-              element={<CreateAnEpisodePage />}
-            />
+            <Route path="/podcast/:id/create-episode" element={<CreateAnEpisodePage />}/>
           </Route>
+          
           < Route element={<PrivateRoutesForAdmin />}>
             <Route path="/admin" element={<AdminPage />} />
-            <Route path="/enquiry-form-table-format" element={<EnquiryFormInTabularFormat/>} />
+            <Route path="/enquiry-form-table-format" element={<EnquiryFormInTabularFormat />} />
             <Route path="/user/:id" element={<UserDetailsPage />} />
             <Route path="/podcast-view-for-admin" element={<PodcastViewForAdmin />} />
             <Route path="/podcast/:id" element={<PodcastDetailsPage />} />

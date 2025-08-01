@@ -190,7 +190,7 @@ function Admin() {
   }
 
   //after clicking on user podcast view.
-  function handlePodcastView(){
+  function handlePodcastView() {
     navigate("/podcast-view-for-admin")
   }
   return (
@@ -240,7 +240,15 @@ function Admin() {
                 </StyledTableCell>
                 <StyledTableCell align="right">{row.name}</StyledTableCell>
                 {/* <StyledTableCell align="right">{row.uid}</StyledTableCell> */}
-                <StyledTableCell align="right"><a href={row.proImg} target="_blank">Profile Image</a></StyledTableCell>
+                {/* <StyledTableCell align="right"><a href={row.proImg} target="_blank">Profile Image</a></StyledTableCell> */}
+                <StyledTableCell align="right">
+                  <a href={row.proImg} target="_blank" onClick={(e) => {
+                    e.stopPropagation();  // Prevents the event from propagating to the row
+                    e.preventDefault();   // Prevents the default behavior
+                    window.open(row.proImg, '_blank');  // Opens the link in a new tab
+                  }}>Profile Image</a>
+                </StyledTableCell>
+
                 <StyledTableCell align="right">{row.registrationDate.toDate().toLocaleString()}</StyledTableCell>
                 <StyledTableCell align="right" onClick={(e) => handleDeleteUser(e, row.id)}><img src={image} alt='img' /></StyledTableCell>
               </StyledTableRow>

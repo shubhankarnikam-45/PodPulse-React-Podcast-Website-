@@ -96,6 +96,8 @@ function PodcastDetailsPage() {
             </div>
             <p className="podcast-description">{podcast.description}</p>
             <h1 className="podcast-title-heading ">Episodes</h1>
+
+            
             {episodes.length > 0 ? (
               <>
                 {episodes.map((episode, index) => {

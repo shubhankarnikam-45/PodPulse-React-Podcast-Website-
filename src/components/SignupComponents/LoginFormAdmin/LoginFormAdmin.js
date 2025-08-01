@@ -23,7 +23,7 @@ function LoginFormAdmin() {
     const dispatch = useDispatch();
 
     const adminState = useSelector((state) => state.admin.adminState);
-    console.log("admin state", adminState)
+    // console.log("admin state", adminState)
     //if admin is correctly login.
     const [isAdminLogin, setIsAdminLogin] = useState(false);
 
@@ -52,10 +52,10 @@ function LoginFormAdmin() {
     }, []);
 
     const handleLogin = async () => {
-        console.log("Handling Login");
+        // console.log("Handling Login");
         setLoading(true);
         if (data[0].id == email && data[0].password == password || data[1].id == email && data[1].password == password) {
-            console.log("admin")
+            // console.log("admin")
             setIsAdminLogin(true);
             dispatch(setAdminState(true));
 

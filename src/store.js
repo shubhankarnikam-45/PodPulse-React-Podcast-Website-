@@ -11,9 +11,5 @@ export default configureStore({
     podcasts: podcastReducer,
     currentUserPodcasts: currentUserPodcastReducer,
     admin : adminReducer
-
-
-
-
   },
 });

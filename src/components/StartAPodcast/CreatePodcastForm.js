@@ -61,6 +61,7 @@ function CreatePodcastForm() {
         };
 
         const docRef = await addDoc(collection(db, "podcasts"), podcastData);
+        
         setTitle("");
         setDesc("");
         setBannerImage(null);

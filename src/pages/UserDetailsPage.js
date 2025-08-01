@@ -171,6 +171,7 @@ function UserDetailsPage() {
                   title={item.title}
                   displayImage={item.displayImage}
                   text={"delete"}
+                  dateCreated={item.dateCreated} 
                   onClick={(e) => handleDelete(e, item.id)}
                 />
               );

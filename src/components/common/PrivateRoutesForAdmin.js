@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 const PrivateRoutesForAdmin = () => {
   const adminState = useSelector((state) => state.admin.adminState);
 
-  console.log("democ", adminState)
+  // console.log("democ", adminState)
   if (adminState == false) {
     return <Navigate to="/" replace />;
   } else if (adminState == true) {

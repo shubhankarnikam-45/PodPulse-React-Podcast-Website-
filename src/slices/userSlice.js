@@ -15,6 +15,8 @@ const userSlice = createSlice({
     setUser: (state, action) => {
       // console.log("setUser()",action)
       state.user = action.payload;
+
+      // console.log("user present or not", action.payload)
     },
     clearUser: (state) => {
       state.user = null;
